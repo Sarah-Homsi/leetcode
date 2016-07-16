@@ -1,0 +1,26 @@
+public class Solution {
+    public int[] Intersection(int[] nums1, int[] nums2) {
+        var result = new List<int>();
+        if (nums1.Length > nums2.Length)
+        {
+        return Intersect(nums1, nums2).Distinct().ToArray();
+        }
+        else
+        {
+        return Intersect(nums2, nums1).Distinct().ToArray();
+        }
+    }
+    public List<int> Intersect(int[] big, int[] small){
+        var result = new List<int> ();
+        var lookup = new HashSet<int>(big);
+        for(int i=0; i<small.Length;i++)
+        {
+            if (lookup.Contains (small[i]))
+            {
+                result.Add(small[i]);
+            }
+        }
+        return result;
+    }
+    
+}
