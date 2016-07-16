@@ -1,0 +1,10 @@
+public class Solution {
+    public bool ContainsDuplicate(int[] nums) {
+        var distinct = nums.Distinct();
+        if (nums.Count()<2) return false;
+        if (distinct.Count() != nums.Count()){
+            return true;
+        }
+        return false;
+    }
+}
