@@ -1,0 +1,47 @@
+public class Solution {
+    public bool IsAnagram(string s, string t) {
+       
+        
+       if (s.Length!= t.Length){
+            return false;
+        }
+      /*  
+        var Lookup = s.GroupBy(x => x).ToDictionary(g => g.Key,g => g.Count());
+        foreach (var c in t){
+            if (!Lookup.ContainsKey(c))
+            return false;
+            else {
+               if ( Lookup[c]-- <0){ 
+                    return false;
+               }
+               else 
+               {
+                   if (Lookup[c]==0){
+                   Lookup.Remove(c);
+               }
+               }
+                
+                //Console.WriteLine(string.Join("", Lookup));
+            }
+            
+        }
+        if (Lookup.Count==0)
+        return true;
+        else 
+        return false;
+        */
+        var schar =  s.ToArray();
+        Array.Sort(schar);
+        var tchar =  t.ToArray();
+        Array.Sort(tchar);
+        //var ssorted = String.Concat(s.OrderBy(c => c));
+       // return schar.Equals(tchar);
+       
+       for(int i=0 ; i<tchar.Count() ;i++){
+           if (schar[i] != tchar[i] ){
+               return false;
+           }
+       }
+       return true;
+    }
+}
