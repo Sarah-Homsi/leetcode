@@ -1,0 +1,29 @@
+public class Solution {
+    public int[] Intersect(int[] nums1, int[] nums2) {
+        //GroupBy(x => x.Value).ToDictionary(x => x.Key, x => x.Count())
+        var numsOne = nums1.GroupBy(x=>x).ToDictionary(i=> i.Key, i=>i.Count());
+        var numsTwo = nums2.GroupBy(x=>x).ToDictionary(i=> i.Key, i=>i.Count());
+        //Console.WriteLine(string.Join(Environment.NewLine,numsOne.Select(kvp => kvp.Key + ": " + kvp.Value.ToString()))+"%%%%\n");
+        //Console.WriteLine(string.Join(Environment.NewLine,numsTwo.Select(kvp => kvp.Key + ": " + kvp.Value.ToString())));
+        if (numsOne.Count()<numsTwo.Count()){
+           return CumputeIntersection(numsOne, numsTwo);
+        }
+        return CumputeIntersection(numsTwo, numsOne);
+    }
+    public int[] CumputeIntersection(Dictionary<int, int> numsOne, Dictionary<int,int>numsTwo){
+       var result = new List<int>();
+        foreach( var n in numsOne){
+            if (numsTwo.ContainsKey(n.Key)){
+                //Console.WriteLine(n.Value);
+                //Console.WriteLine("numsTwo[n.Key] "+numsTwo[n.Key]);
+                //Console.WriteLine("n.Vale "+n.Value);
+
+                int joint = Math.Min(numsTwo[n.Key], n.Value);
+                for(int i=0;i<joint;i++){
+                    result.Add(n.Key);
+                }
+            }
+        }
+        return result.ToArray();
+    }
+}
